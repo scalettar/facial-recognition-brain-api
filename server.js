@@ -41,15 +41,15 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-    bcrypt.compare("apples", '$2b$10$IocDBdqi09b82Z2sw0ud..Im4lrrl/pDvMkasbHIjxUOB9kUZLb7C', function(err, res){
-        console.log('first guess', res);
-    })
-    bcrypt.compare("veggies", '$2b$10$IocDBdqi09b82Z2sw0ud..Im4lrrl/pDvMkasbHIjxUOB9kUZLb7C', function(err, res){
-        console.log('second guess', res);
-    })
+    // bcrypt.compare("apples", '$2b$10$IocDBdqi09b82Z2sw0ud..Im4lrrl/pDvMkasbHIjxUOB9kUZLb7C', function(err, res){
+    //     console.log('first guess', res);
+    // })
+    // bcrypt.compare("veggies", '$2b$10$IocDBdqi09b82Z2sw0ud..Im4lrrl/pDvMkasbHIjxUOB9kUZLb7C', function(err, res){
+    //     console.log('second guess', res);
+    // })
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password) {
-        res.json('success');
+        res.json(database.users[0]);
     } else {
         res.status(400).json('error logging in');
     }
@@ -66,7 +66,6 @@ app.post('/register', (req, res) => {
         id: '125',
         name: name,
         email: email,
-        password: password,
         entries: 0,
         joined: new Date()
     })
